@@ -41,22 +41,22 @@ export default class MainPage extends Component{
         }}>
         <TabNavigator barTintColor="white">
           <TabNavigator.Item
-            renderIcon={() => <Image source={require("./img/ico_course.png")} />}
-            renderSelectedIcon={() => <Image source={require("./img/ico_camera.png")} />}
+            renderIcon={() => <Image source={require("./img/tab_home.png")} />}
+            renderSelectedIcon={() => <Image source={require("./img/tab_home_pre.png")} />}
             title='揭示板'
             selected={this.state.selectedTab == 'revearlingBoard'}
             onPress={() => this.setState({selectedTab: 'revearlingBoard'})}
-            selectedTitleStyle={{color: 'blue'}}
+            selectedTitleStyle={{color: 'red'}}
             >
             {this._renderRootContent('revearlingBoard')}
           </TabNavigator.Item>
           <TabNavigator.Item
             title='中古'
-            renderIcon={() => <Image source={require("./img/ico_course.png")} />}
-            renderSelectedIcon={() => <Image source={require("./img/ico_camera.png")} />}
+            renderIcon={() => <Image source={require("./img/tab_shop.png")} />}
+            renderSelectedIcon={() => <Image source={require("./img/tab_shop_pre.png")} />}
             selected={this.state.selectedTab === 'middleAges'}
             onPress={() => this.setState({selectedTab: 'middleAges'})}
-            selectedTitleStyle={{color: 'blue'}}
+            selectedTitleStyle={{color: 'red'}}
             >
             {this._renderRootContent('middleAges')}
           </TabNavigator.Item>
@@ -89,7 +89,7 @@ export default class MainPage extends Component{
     // }
 
     // tabbar
-      if (!_.contains(['taskInfo'], route.id)) {
+      if (!_.contains(['shopDetails'], route.id)) {
         this.showTabBar();
       } else {
         this.hideTabBar();

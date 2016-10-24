@@ -6,6 +6,7 @@ import _ from 'underscore'
 import RevearlingBoard from '../revearlingBoard/revearlingBoardPage.js';
 import MiddleAges from '../middleAges/middleAgesPage.js';
 import ContextWrapper from './context_wrapper.js';
+import ShopDetails from '../middleAges/shopDetails.js';
 
 export default class Routes extends Component{
 
@@ -28,6 +29,8 @@ export default class Routes extends Component{
         return <ContextWrapper {...props}><RevearlingBoard {...viewProps}/></ContextWrapper>
       case 'middleAges':
         return <ContextWrapper {...props}><MiddleAges {...viewProps}/></ ContextWrapper>
+      case 'shopDetails':
+        return <ContextWrapper {...props}><ShopDetails {...viewProps}/></ ContextWrapper>
     }
 
     return <View style={{top: 100}}><Text>Hello.{'\n'}{route.id} page is not found.</Text></View>

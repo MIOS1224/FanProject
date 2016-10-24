@@ -85,12 +85,15 @@ var MenuList = React.createClass({
       }else{
         tabStyle = [styles.header_text];
       }
-      header.push(
-        <TouchableOpacity style={[styles.flex_1, styles.center]}
-                          onPress={this.headerPress.bind(this, i)}>
-          <Text style={tabStyle}>{i}</Text>
-        </TouchableOpacity>
-      );
+      if (i==0) {
+        console.log(`---`);
+        header.push(
+          <TouchableOpacity style={[styles.flex_1, styles.center]}
+                            onPress={this.headerPress.bind(this, i)}>
+            <Text style={tabStyle}>{i}</Text>
+          </TouchableOpacity>
+        );
+      }
       tabIndex ++;
     }
     return header;
@@ -193,7 +196,8 @@ var styles = StyleSheet.create({
     flex:1,
     borderTopWidth:1,
     borderBottomWidth:1,
-    borderColor:'#ddd'
+    borderColor:'#ddd',
+    backgroundColor: '#ffffff',
   },
   row:{
     flexDirection: 'row'
