@@ -9,7 +9,7 @@ let createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 let store = createStoreWithMiddleware(rootReducer);
 
-
+//test info
 export default class rootApp extends Component{
 
   render(){
