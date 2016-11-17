@@ -17,6 +17,8 @@ import NavigationBar from 'react-native-navbar'
 import _ from 'underscore'
 import LeftBarButton from '../common/leftBarButton'
 import {Device} from '../components.js'
+import ActionSheet from 'react-native-actionsheet';
+
 var {DeviceWidth,DeviceHeight} = Device
 
 class ShopDetails extends Component{
@@ -36,11 +38,11 @@ class ShopDetails extends Component{
       title: '编辑',
       tintColor: 'red',
       handler: () => {
-        this.context.page.navigator.push({
-          id: 'editMiddleAge'
-        })
+        this.ActionSheet.show();
+
       }
     }
+    const buttons = ['取消', '编辑', '删除', '分享'];
     return(
       <View style={styles.container}>
       <NavigationBar
@@ -85,9 +87,32 @@ class ShopDetails extends Component{
             </View>
           </View>
         </View>
-
+        <ActionSheet
+                ref={(o) => this.ActionSheet = o}
+                title=""
+                options={buttons}
+                cancelButtonIndex={0}
+                onPress={(index)=>this._handlePress(index)}
+            />
       </View>
     )
+  }
+  _handlePress(index) {
+    if (index==0) {
+      console.log(`===11111====`);
+
+    }else if (index==1) {
+      console.log(`===222====`);
+      this.context.page.navigator.push({
+        id: 'editMiddleAge'
+      })
+    }else if (index==2){
+      console.log(`===333====`);
+
+    }else {
+      console.log(`===444====`);
+
+    }
   }
   contactAction(){
 
