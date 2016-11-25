@@ -10,12 +10,14 @@
     "react": "15.3.2",
     "react-native": "0.35.0",
     "react-native-actionsheet": "^2.0.4",
+    "react-native-image-picker": "^0.23.0",
     "react-native-navbar": "^1.5.4",
+    "react-native-scrollable-tab-view": "^0.6.0",
     "react-native-tab-navigator": "^0.3.3",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "underscore":"^1.8.3"
+    "underscore": "^1.8.3"
   },
   "jest": {
     "preset": "jest-react-native"

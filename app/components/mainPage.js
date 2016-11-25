@@ -89,7 +89,7 @@ export default class MainPage extends Component{
     // }
 
     // tabbar
-      if (!_.contains(['shopDetails'], route.id)) {
+      if (!_.contains(['shopDetails','editMiddleAge','userProduction'], route.id)) {
         this.showTabBar();
       } else {
         this.hideTabBar();

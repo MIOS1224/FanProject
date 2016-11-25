@@ -8,6 +8,7 @@ import MiddleAges from '../middleAges/middleAgesPage.js';
 import ContextWrapper from './context_wrapper.js';
 import ShopDetails from '../middleAges/shopDetails.js';
 import EditMiddleAge from '../middleAges/editMiddleAge.js'
+import UserProduction from '../middleAges/userProduction.js'
 export default class Routes extends Component{
 
   static renderScene(route, navigator, props = {}) {
@@ -33,7 +34,8 @@ export default class Routes extends Component{
         return <ContextWrapper {...props}><ShopDetails {...viewProps}/></ ContextWrapper>
       case 'editMiddleAge':
         return <ContextWrapper {...props}><EditMiddleAge {...viewProps}/></ ContextWrapper>
-
+      case 'userProduction':
+        return <ContextWrapper {...props}><UserProduction {...viewProps}/></ ContextWrapper>
     }
 
     return <View style={{top: 100}}><Text>Hello.{'\n'}{route.id} page is not found.</Text></View>
