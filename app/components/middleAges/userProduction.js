@@ -19,7 +19,7 @@ import LeftBarButton from '../common/leftBarButton'
 import {Device} from '../components.js'
 var {DeviceWidth,DeviceHeight} = Device
 
-class EditMiddleAge extends Component{
+class UerProduction extends Component{
 
   static contextTypes = {
     app: React.PropTypes.object,
@@ -35,35 +35,15 @@ class EditMiddleAge extends Component{
     return(
       <View style={styles.container}>
       <NavigationBar
-        title={{title:'修改2016春CON应援扇'}}
+        title={{title:'全部出品'}}
         leftButton = {<LeftBarButton onPress={() => this.context.page.navigator.pop()}
         />}
         />
         <View>
-          <Text onPress={()=>this.selectPhoto()}>选择照片
-          </Text>
-          <Text style={{marginTop: 30}}>标题
-          </Text>
-          <Text style={{marginTop: 30}}>描述
-          </Text>
-          <Text style={{marginTop: 30}}>爱豆
-          </Text>
-          <Text style={{marginTop: 30}}>分类
-          </Text>
-          <Text style={{marginTop: 30}}>出售状态
-          </Text>
-          <TouchableOpacity onPress={()=>this.confirmAction()}>
-            <View style={styles.confirmStyle}>
-             <Text>确认
-             </Text>
-            </View>
-          </TouchableOpacity>
+
         </View>
       </View>
     )
-  }
-  selectPhoto(){
-    
   }
   confirmAction(){
 
@@ -75,14 +55,6 @@ var styles= StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff'
   },
-  confirmStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red',
-    margin: 30,
-    height: 40,
-    borderRadius: 4
-  }
 })
 
 export default connect(state => ({
@@ -92,4 +64,4 @@ export default connect(state => ({
     actions: bindActionCreators(userActions, dispatch)
 
   })
-)(EditMiddleAge);
+)(UerProduction);

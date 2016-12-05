@@ -87,6 +87,13 @@ class ShopDetails extends Component{
             </View>
           </View>
         </View>
+        <TouchableOpacity onPress={()=>this.checkAllProduction()}>
+          <View>
+            <Text>查看该用户全部出品
+            </Text>
+          </View>
+        </TouchableOpacity>
+
         <ActionSheet
                 ref={(o) => this.ActionSheet = o}
                 title=""
@@ -113,6 +120,11 @@ class ShopDetails extends Component{
       console.log(`===444====`);
 
     }
+  }
+  checkAllProduction(){
+    this.context.page.navigator.push({
+      id: 'userProduction'
+    })
   }
   contactAction(){
 
