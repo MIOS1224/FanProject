@@ -14,6 +14,7 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions'
 import NavigationBar from 'react-native-navbar'
 import _ from 'underscore'
+import Segment from '../common/segment.js'
 
 class BackyardPage extends Component{
 
@@ -31,7 +32,12 @@ class BackyardPage extends Component{
 
     return(
       <View style={styles.container}>
-
+      <Segment/>
+      <Segment/>
+      <Segment/>
+      <Segment/>
+      <Segment/>
+      <Segment/>
       </View>
     )
   }
@@ -41,7 +47,7 @@ class BackyardPage extends Component{
 var styles= StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: 'blue'
+    backgroundColor: '#efefef'
   },
   contents: {
     marginTop: 50

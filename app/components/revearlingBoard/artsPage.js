@@ -14,6 +14,7 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions'
 import NavigationBar from 'react-native-navbar'
 import _ from 'underscore'
+import Segment from '../common/segment.js'
 
 class ArtsPage extends Component{
 
@@ -31,6 +32,9 @@ class ArtsPage extends Component{
 
     return(
       <View style={styles.container}>
+      <Segment/>
+      <Segment/>
+      <Segment/>
 
       </View>
     )
@@ -41,7 +45,7 @@ class ArtsPage extends Component{
 var styles= StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: 'green'
+    backgroundColor: '#efefef'
   },
   contents: {
     marginTop: 50

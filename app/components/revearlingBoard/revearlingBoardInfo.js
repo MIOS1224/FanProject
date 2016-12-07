@@ -14,12 +14,12 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions'
 import NavigationBar from 'react-native-navbar'
 import _ from 'underscore'
-import ScrollableTabView from 'react-native-scrollable-tab-view'
-import JohnnyPage from './johnnyPage.js'
-import ArtsPage from './artsPage.js'
-import BackyardPage from './backyardPage.js'
+import {Device} from '../components.js'
+import LeftBarButton from '../common/leftBarButton'
+import Segment from '../common/segment.js'
+var {DeviceWidth,DeviceHeight} = Device
 
-class RevearlingBoard extends Component{
+class RevearlingBoardInfo extends Component{
 
   static contextTypes = {
     app: React.PropTypes.object,
@@ -35,17 +35,18 @@ class RevearlingBoard extends Component{
 
     return(
       <View style={styles.container}>
-          <NavigationBar title={{title:'饭圈',tintColor: '#ffffff'}}
-                         tintColor = '#135ece'/>
-           <ScrollableTabView
-             scrollWithoutAnimation={true}
-             tabBarActiveTextColor='red'
-             tabBarUnderlineStyle={{backgroundColor: 'red'}}
-           >
-             <JohnnyPage tabLabel="Johnny's" />
-             <ArtsPage tabLabel="艺能界" />
-             <BackyardPage tabLabel="后院" />
-           </ScrollableTabView>
+        <NavigationBar
+          title={{title:'修改2016春CON应援扇'}}
+          leftButton = {<LeftBarButton onPress={() => this.context.page.navigator.pop()}
+          />}
+          />
+        <Image source={require('../img/touxiang.jpeg')} style={{width:DeviceWidth,height:150}} resizeMode='stretch'/>
+        <Text style={{opacity: 0.5}}>会员人数：7440人
+        </Text>
+        <Segment/>
+        <Segment/>
+        <Segment/>
+
       </View>
     )
   }
@@ -69,4 +70,4 @@ export default connect(state => ({
     actions: bindActionCreators(userActions, dispatch)
 
   })
-)(RevearlingBoard);
+)(RevearlingBoardInfo);
