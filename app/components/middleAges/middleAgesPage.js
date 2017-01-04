@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions';
 import NavigationBar from 'react-native-navbar';
+import ModalDropdown from 'react-native-modal-dropdown';
 import _ from 'underscore';
 import {Device} from '../components.js'
 var {DeviceWidth,DeviceHeight} = Device
@@ -30,79 +31,87 @@ class MiddleAges extends Component{
   constructor(props) {
     super(props)
     this.state={
-      // leftClick: false,
-      middleClick: false,
-      rightClick: false,
+
     }
   }
+
   componentDidMount(){
+
   }
+
   render(){
-    var data = {
-      "Language": {
-        "All": ["All"],
-        "Web Front End": [
-          "HTML",
-          "CSS",
-          "JavaScript"
-        ],
-        "Server": [
-          "Node.js",
-          "PHP",
-          "Python",
-          "Ruby"
-        ]
-      },
-      "Tool":{
-        "All": ["All"],
-        "Apple": ["Xcode"],
-        "Other": ["Sublime Text", "WebStrom"]
-      }
-    };
+
     return(
       <View style={styles.container}>
-          <NavigationBar title={{title:'中古',tintColor: '#ffffff'}}
-                         tintColor = '#135ece'/>
+          <NavigationBar title={{title:'中古'}}
+                          />
+            {this.renderModalDropDown()}
             <ScrollView>
             {this.renderContent()}
             </ScrollView>
-            <View style={styles.menuStyle}>
-              <View style={styles.middleView}>
-                  <TouchableOpacity onPress={()=>this.clickSelect('middle')}>
-                    <View style={styles.selectStyle}>
-                      <Text>爱豆
-                      </Text>
-                      <Image style={{height: 12,width: 15}} source={!this.state.middleClick?require('../img/ico_arr_down.png'):require('../img/ico_arr_up.png')}/>
-                    </View>
-                  </TouchableOpacity>
-                  {
-                    this.state.middleClick&&(<View style={{width: DeviceWidth/3,alignItems: 'center',justifyContent: 'center'}}>
-                    <Text style={{paddingTop: 10,height: 30,width: DeviceWidth/3,textAlign: 'center'}} onPress={()=>this.selectStyle('未开始')}>周杰伦</Text>
-                    <Text style={{paddingTop: 10,height: 30,width: DeviceWidth/3,textAlign: 'center'}} onPress={()=>this.selectStyle('进行中')}>李连杰</Text>
-                    <Text style={{paddingTop: 10,height: 30,width: DeviceWidth/3,textAlign: 'center'}} onPress={()=>this.selectStyle('已结束')}>凤姐</Text>
-                    </View>)
-                  }
-              </View>
-              <View style={styles.rightView}>
-                  <TouchableOpacity onPress={()=>this.clickSelect('right')}>
-                    <View style={styles.selectStyle}>
-                      <Text>分类
-                      </Text>
-                      <Image style={{height: 12,width: 15}} source={!this.state.rightClick?require('../img/ico_arr_down.png'):require('../img/ico_arr_up.png')}/>
-                    </View>
-                  </TouchableOpacity>
-                  {
-                    this.state.rightClick&&(<View style={{width: DeviceWidth/3,alignItems: 'center',justifyContent: 'center'}}>
-                    <Text style={{paddingTop: 10,height: 30,width: DeviceWidth/3,textAlign: 'center'}} onPress={()=>this.selectStyle('未开始')}>王大锤</Text>
-                    <Text style={{paddingTop: 10,height: 30,width: DeviceWidth/3,textAlign: 'center'}} onPress={()=>this.selectStyle('进行中')}>帅哥前</Text>
-                    <Text style={{paddingTop: 10,height: 30,width: DeviceWidth/3,textAlign: 'center'}} onPress={()=>this.selectStyle('已结束')}>王尼玛</Text>
-                    </View>)
-                  }
-              </View>
-            </View>
+
       </View>
     )
   }
+
+  renderModalDropDown(){
+    return(
+      <View style={styles.selectStyle}>
+          <ModalDropdown
+            options={['爱豆', 'SMAP','V6','托福预备','KinKi Kids','News']}
+            style={styles.toolbarStyle}
+            textStyle={styles.textStyle}
+            dropdownStyle={styles.dropdownStyle}
+            defaultValue='爱豆'
+            renderRow={(rowData, rowID, highlighted)=>this._renderDropDownRow(rowData, rowID, highlighted)}
+            renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._renderDropDownSeparator(sectionID, rowID, adjacentRowHighlighted)}
+            onSelect={(value)=>this._selectAction(value)}>
+          </ModalDropdown>
+          <ModalDropdown
+            options={['全部','SHOP/生写','CD/DVD','杂/切面','应援扇','学历年','场刊/会刊','写真集','海报']}
+            style={styles.toolbarStyle}
+            textStyle={styles.textStyle}
+            dropdownStyle={styles.dropdownStyle}
+            defaultValue='分类'
+            renderRow={(rowData, rowID, highlighted)=>this._renderDropDownRow(rowData, rowID, highlighted)}
+            renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._renderDropDownSeparator(sectionID, rowID, adjacentRowHighlighted)}
+            onSelect={(value)=>this._selectAction(value)}>
+          </ModalDropdown>
+          <ModalDropdown
+            options={['默认','最新']}
+            style={styles.toolbarStyle}
+            textStyle={styles.textStyle}
+            dropdownStyle={styles.dropdownStyle}
+            defaultValue='排序'
+            renderRow={(rowData, rowID, highlighted)=>this._renderDropDownRow(rowData, rowID, highlighted)}
+            renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._renderDropDownSeparator(sectionID, rowID, adjacentRowHighlighted)}
+            onSelect={(value)=>this._selectAction(value)}>
+          </ModalDropdown>
+      </View>
+    )
+  }
+
+  _selectAction(){
+
+  }
+
+  _renderDropDownSeparator(sectionID, rowID, adjacentRowHighlighted){
+    return(
+      <View style={{height: 2,backgroundColor: '#ffffff'}} key={rowID}>
+      </View>
+    )
+  }
+
+  _renderDropDownRow(rowData, rowID, highlighted){
+    return (
+        <View style={{alignItems: 'center',justifyContent: 'center',height: 40,backgroundColor:highlighted?'#004f93':'#efefef'}}>
+          <Text style={{textAlign: 'center',color: highlighted?'#ffffff':'black'}}>
+            {rowData}
+          </Text>
+        </View>
+    )
+  }
+
   renderContent(){
     return(
       <View style={styles.view}>
@@ -127,48 +136,11 @@ class MiddleAges extends Component{
       </View>
     )
   }
-  // <MenuList style={styles.leftView} leftClick={this.state.leftClick} data={data} nSelected={0} tabSelected={0} click={(value)=>this.onPress(value)}/>
 
   shopPress(){
     this.context.page.navigator.push({
       id: 'shopDetails'
     })
-  }
-  clickSelect(value){
-    if (value=='left') {
-
-    }
-    else if (value=='middle') {
-      if (this.state.middleClick) {
-        this.setState({
-          middleClick: false,
-        })
-      }else {
-        this.setState({
-          middleClick: true,
-          rightClick: false
-        })
-      }
-
-    }else {
-      if (this.state.rightClick) {
-        this.setState({
-          rightClick: false
-        })
-      }else {
-        this.setState({
-          middleClick: false,
-          rightClick: true
-        })
-      }
-
-    }
-  }
-  selectStyle(){
-
-  }
-  onPress(val){
-    console.log(`value=======${JSON.stringify(val)}`);
   }
 
 }
@@ -179,42 +151,29 @@ var styles= StyleSheet.create({
     flex: 1,
     backgroundColor: '#efefef',
   },
-  menuStyle: {
-    position: 'absolute',
-    top:64,
-    flexDirection: 'row'
-  },
-  leftView: {
-    alignItems: 'center',
-    marginTop: 0,
-    width: DeviceWidth/3,
-    backgroundColor: 'pink',
-    height: 30,
-  },
-  middleView: {
-    alignItems: 'center',
-    marginTop: 0,
-    width: DeviceWidth/3,
-    backgroundColor: '#ffffff',
-    height: 30,
-  },
-  rightView: {
-    marginTop: 0,
-    width: DeviceWidth/3,
-    backgroundColor: '#ffffff',
-    height: 30,
-  },
   selectStyle: {
-    marginLeft: 0,
-    height: 30,
-    width: DeviceWidth/3,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
+    width: DeviceWidth
+  },
+  toolbarStyle: {
+    width: DeviceWidth/3,
+    backgroundColor: '#004f93'
+  },
+  textStyle: {
+    height: 40,
+    lineHeight: 40,
+    marginHorizontal: 6,
+    // fontSize: 15,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    color: '#ffffff'
+  },
+  dropdownStyle: {
+    backgroundColor: '#efefef',
+    width: DeviceWidth/3,
   },
   view: {
-    marginTop: 40,
+    marginTop: 10,
     width:DeviceWidth,
     flexDirection: 'row',
     flexWrap: 'wrap',

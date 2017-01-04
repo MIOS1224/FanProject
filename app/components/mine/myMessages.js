@@ -14,39 +14,42 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions'
 import NavigationBar from 'react-native-navbar'
 import _ from 'underscore'
+import ScrollableTabView from 'react-native-scrollable-tab-view'
 import LeftBarButton from '../common/leftBarButton'
-import Segment from '../common/segment.js'
+import PrivateMessages from './privateMessages'
+import SellerMessages from './sellerMessages'
 import {Device} from '../components.js'
 var {DeviceWidth,DeviceHeight} = Device
 
-class RevearlingBoardInfo extends Component{
+class MyMiddleAges extends Component{
 
   static contextTypes = {
     app: React.PropTypes.object,
-    page: React.PropTypes.object
   }
 
   constructor(props) {
     super(props)
   }
   componentDidMount(){
+
   }
   render(){
 
     return(
       <View style={styles.container}>
-        <NavigationBar
-          title={{title:'修改2016春CON应援扇'}}
-          leftButton = {<LeftBarButton onPress={() => this.context.page.navigator.pop()}
-          />}
-          />
-        <Image source={require('../img/touxiang.jpeg')} style={{width:DeviceWidth,height:150}} resizeMode='stretch'/>
-        <Text style={{opacity: 0.5}}>会员人数：7440人
-        </Text>
-        <Segment/>
-        <Segment/>
-        <Segment/>
-
+      <NavigationBar
+        title={{title:'消息'}}
+        leftButton = {<LeftBarButton onPress={() => this.context.app.navigator.pop()}
+        />}
+        />
+        <ScrollableTabView
+          scrollWithoutAnimation={true}
+          tabBarActiveTextColor='red'
+          tabBarUnderlineStyle={{backgroundColor: 'red'}}
+        >
+          <PrivateMessages tabLabel="私信" />
+          <SellerMessages tabLabel="卖家留言" />
+        </ScrollableTabView>
       </View>
     )
   }
@@ -56,11 +59,9 @@ class RevearlingBoardInfo extends Component{
 var styles= StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#efefef'
   },
-  contents: {
-    marginTop: 50
-  }
+
 })
 
 export default connect(state => ({
@@ -70,4 +71,4 @@ export default connect(state => ({
     actions: bindActionCreators(userActions, dispatch)
 
   })
-)(RevearlingBoardInfo);
+)(MyMiddleAges);

@@ -14,10 +14,13 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions'
 import NavigationBar from 'react-native-navbar'
 import _ from 'underscore'
+import LeftBarButton from '../common/leftBarButton'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import JohnnyPage from './johnnyPage.js'
 import ArtsPage from './artsPage.js'
 import BackyardPage from './backyardPage.js'
+import AppEventEmitter from '../common/appEventEmitter.js'
+
 
 class RevearlingBoard extends Component{
 
@@ -35,8 +38,10 @@ class RevearlingBoard extends Component{
 
     return(
       <View style={styles.container}>
-          <NavigationBar title={{title:'饭圈',tintColor: '#ffffff'}}
-                         tintColor = '#135ece'/>
+          <NavigationBar title={{title:'饭圈'}}
+                         leftButton = {<LeftBarButton isDrawer={true} onPress={() => this.showDrawer()}/>}
+                         />
+
            <ScrollableTabView
              scrollWithoutAnimation={true}
              tabBarActiveTextColor='red'
@@ -48,6 +53,11 @@ class RevearlingBoard extends Component{
            </ScrollableTabView>
       </View>
     )
+  }
+
+  showDrawer(){
+    AppEventEmitter.emit('openDrawer');
+
   }
 
 }

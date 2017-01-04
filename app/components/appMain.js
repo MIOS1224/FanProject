@@ -11,6 +11,11 @@ import {
 
 import MainPage from './mainPage';
 import AppContainer from './app_container.js'
+import MyPosts from './mine/myPosts.js'
+import MyMiddleAges from './mine/myMiddleAges.js'
+import MyMessages from './mine/myMessages.js'
+import MySetting from './mine/mySetting.js'
+import MyAdvice from './mine/myAdvice.js'
 
 import _ from 'underscore'
 
@@ -57,6 +62,21 @@ export default class RootPage extends Component {
         break;
       case 'login':
         return <AppContainer {...props}><LoginPage {...viewProps}/></AppContainer>
+        break;
+      case 'myPosts':
+        return <AppContainer {...props}><MyPosts {...viewProps}/></AppContainer>
+        break;
+      case 'myMiddleAges':
+        return <AppContainer {...props}><MyMiddleAges {...viewProps}/></AppContainer>
+        break;
+      case 'myMessages':
+        return <AppContainer {...props}><MyMessages {...viewProps}/></AppContainer>
+        break;
+      case 'mySetting':
+        return <AppContainer {...props}><MySetting {...viewProps}/></AppContainer>
+        break;
+      case 'advice':
+        return <AppContainer {...props}><MyAdvice {...viewProps}/></AppContainer>
         break;
     }
     return (
